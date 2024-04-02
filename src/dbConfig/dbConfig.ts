@@ -17,10 +17,9 @@ export async function DbConnect () {
           process.exit();
       })
 
-        connection.on("error", (error) => {
-            console.log("Mongo DB connection error , Please make sure mongo Db is running " + error);
-            process.exit();
-        })
+    connection.on('disconnected' , () => {
+        console.log("mongoDb disconnected successfully");
+    })
 
     } catch (error) {
         console.log("Something went wrong : ");
