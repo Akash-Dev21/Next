@@ -1,13 +1,12 @@
-
 "use client"
 
 import Link from "next/link"
-import React from "react"
+import React, { useEffect } from "react"
 import { useRouter } from "next/navigation"
 import axios from "axios"
 import { toast } from "react-hot-toast"
 
-export default function SignUp () {
+export default function Login () {
     const router = useRouter();
 
     const [user,setUser] = React.useState({
@@ -31,6 +30,14 @@ export default function SignUp () {
             setLoading(false)
         }
     }
+    useEffect (() => {
+        if(user.email.length > 0 && user.password.length > 0 && user.email.length > 0) {
+            setButtonDisabled(false)
+        } else {
+            setButtonDisabled(true)
+        }
+    },[user])
+
     return (
         <div className="flex flex-col item-center justify-center min-h-screen py-2">
             <h1>Login</h1>

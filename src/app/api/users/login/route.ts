@@ -31,16 +31,14 @@ export async function POST(request : NextRequest) {                             
         }
 
         const token = await jwt.sign(tokenData,"MYNEXTSECRET",{expiresIn : "1d"});
+        console.log(token);
 
         const response = NextResponse.json({
             message : "Login Successful",
             success : true 
         })
 
-        response.cookies.set("token",token, {
-            httpOnly : true                             
-        })
-
+        response.cookies.set("token",token)
         return response;
 
     } catch (error : any) {
